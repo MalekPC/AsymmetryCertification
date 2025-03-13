@@ -86,7 +86,7 @@ for _ in range(num_initial_guesses):
         best_cost = result.fun
         best_result = result
 
-print(-best_result.fun)
+print("Delta_max = ",-best_result.fun)
 
 alpha12 = best_result.x[0]
 alpha13 = best_result.x[1]
@@ -95,7 +95,7 @@ phi3 = best_result.x[2]
 alpha23 = np.arccos(np.sin(alpha12) * np.sin(alpha13) * np.cos(phi3) + np.cos(alpha12) * np.cos(alpha13))
 print(alpha12 / Degree, alpha13 / Degree, alpha23 / Degree)
 ```
-This script returns $\alpha_{12}=58.4^\circ$, $\alpha_{13}= 121.6^\circ$ and $\alpha_{23}= 180^\circ$ which define the most asymmetric comnfiguration.
+This script returns $\alpha_{12}=58.4^\circ$, $\alpha_{13}= 121.6^\circ$ and $\alpha_{23}= 180^\circ$ which define the most asymmetric comnfiguration with the gap $\Delta_{max}\approx0.1111$.
 
 ## Experimental Asymmetry Certification
 To experimentally certify the asymmetry property of a given target trine state, the script `IBMQuantumExperiment.py` can be used. One simply needs to specify the set of angles { $\alpha_{12}$, $\alpha_{13}$, $\alpha_{23}$ }, the number of shots to be considered, the IBM Quantum device (i.e., backend name), and the physical qubit number on which to run the designed quantum circuits.
