@@ -189,10 +189,6 @@ for i in range(3):
          circuits2.append(circuit2)
          circuits3.append(circuit3)
 
-'''## Notes
-circuits1 -----> (n1,m1); (n1,m2); (n2,m1); (n2,m2); .....
-...
-''' 
 
 circuits = circuits1 + circuits2 + circuits3
 
