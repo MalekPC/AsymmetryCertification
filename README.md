@@ -25,7 +25,7 @@ $$\cos(\alpha_{12}) = \vec{n}_1 \cdot \vec{n}_2 = \cos{\theta_2},$$
 
 $$\cos(\alpha_{13}) = \vec{n}_1 \cdot \vec{n}_3 = \cos{\theta_3},$$
 
-$$\hspace{4.5cm}\cos(\alpha_{23}) = \vec{n}_2 \cdot \vec{n}_3 = \sin{\theta_2}\sin{\theta_3}\cos{\phi_3}+\cos{\theta_2}\cos{\theta_3}.$$
+$$\hspace{4.8cm}\cos(\alpha_{23}) = \vec{n}_2 \cdot \vec{n}_3 = \sin{\theta_2}\sin{\theta_3}\cos{\phi_3}+\cos{\theta_2}\cos{\theta_3}.$$
 
 
 When $\phi_3 = k\pi$ where $k \in \mathbb{Z}$, our target Bloch vectors are coplanar; otherwise, they are non-coplanar.
