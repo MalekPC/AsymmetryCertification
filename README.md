@@ -25,7 +25,7 @@ $$\cos(\alpha_{12}) = \vec{n}_1 \cdot \vec{n}_2 = \cos{\theta_2},$$
 
 $$\cos(\alpha_{13}) = \vec{n}_1 \cdot \vec{n}_3 = \cos{\theta_3},$$
 
-$$\hspace{5cm}\cos(\alpha_{23}) = \vec{n}_2 \cdot \vec{n}_3 = \sin{\theta_2}\sin{\theta_3}\cos{\phi_3}+\cos{\theta_2}\cos{\theta_3}.$$
+$$\hspace{4.5cm}\cos(\alpha_{23}) = \vec{n}_2 \cdot \vec{n}_3 = \sin{\theta_2}\sin{\theta_3}\cos{\phi_3}+\cos{\theta_2}\cos{\theta_3}.$$
 
 
 When $\phi_3 = k\pi$ where $k \in \mathbb{Z}$, our target Bloch vectors are coplanar; otherwise, they are non-coplanar.
@@ -95,7 +95,7 @@ phi3 = best_result.x[2]
 alpha23 = np.arccos(np.sin(alpha12) * np.sin(alpha13) * np.cos(phi3) + np.cos(alpha12) * np.cos(alpha13))
 print(alpha12 / Degree, alpha13 / Degree, alpha23 / Degree)
 ```
-This script returns $\alpha_{12}=58.4$, $\alpha_{13}= 121.6$ and $\alpha_{23}= 180$ which define the most asymmetric comnfiguration.
+This script returns $\alpha_{12}=58.4^\circ$, $\alpha_{13}= 121.6^\circ$ and $\alpha_{23}= 180^\circ$ which define the most asymmetric comnfiguration.
 
 ## Experimental Asymmetry Certification
 To experimentally certify the asymmetry property of a given target trine state, the script `IBMQuantumExperiment.py` can be used. One simply needs to specify the set of angles { $\alpha_{12}$, $\alpha_{13}$, $\alpha_{23}$ }, the number of shots to be considered, the IBM Quantum device (i.e., backend name), and the physical qubit number on which to run the designed quantum circuits.
