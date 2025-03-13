@@ -4,7 +4,6 @@ from scipy.optimize import minimize
 
 Degree= pi/180.0
 
-
 def weight_function(alpha):
             return 0.5*(1.0 + (1.0 - abs(np.sin(alpha)))*(1.0/np.cos(alpha)))
 
