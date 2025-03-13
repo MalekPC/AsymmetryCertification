@@ -106,4 +106,4 @@ It is important to note that `IBMQuantumExperiment.py`, `ExpDataProcessing.py`  
 
 The `IBMQuantumExperiment.py` script is designed for coplanar targets (i.e., $\alpha_{12}+\alpha_{13}+\alpha_{23}=2\pi$). However, the script can be slightly modified to accommodate non-coplanar configurations using the aforementioned parametrization.
 
-__Note__: Before using the above scripts, ensure that the necessary packages listed in `requirements.txt` are installed. If not, run the following command to install them: `pip install -r requirements.txt`.
+__Note__: Before using the above scripts, ensure that the necessary packages listed in `Requirements.txt` are installed. If not, run the following command to install them: `pip install -r Requirements.txt`.
