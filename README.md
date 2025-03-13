@@ -98,11 +98,11 @@ print(alpha12 / Degree, alpha13 / Degree, alpha23 / Degree)
 This script returns $\alpha_{12}=58.4^\circ$, $\alpha_{13}= 121.6^\circ$ and $\alpha_{23}= 180^\circ$ which define the most asymmetric configuration with the gap $\Delta_{max}\approx0.1111$.
 
 ## Experimental Asymmetry Certification
-To experimentally certify the asymmetry property of a given target trine state, the script `IBMQuantumExperiment.py` can be used. One simply needs to specify the set of angles { $\alpha_{12}$, $\alpha_{13}$, $\alpha_{23}$ }, the number of shots to be considered, the IBM Quantum device (i.e., backend name), and the physical qubit number on which to run the designed quantum circuits.
+To experimentally certify the asymmetry property of a given target trine states, the script `IBMQuantumExperiment.py` can be used. One simply needs to specify the set of angles { $\alpha_{12}$, $\alpha_{13}$, $\alpha_{23}$ }, the number of shots to be considered, the IBM Quantum device (i.e., backend name), and the physical qubit number on which to run the designed quantum circuits.
 
 After executing the circuits, the script `ExpDataProcessing.py` can be used to retrieve the jobs from the backend and evaluate the experimental value of the witness $I_6$, along with the corresponding standard deviation. If the obtained value violates the mirror bound $Q_{\text{mirror}}$ of the target trine states, the certification task is considered successful.
 
-It is important to note that both the `IBMQuantumExperiment.py`, `ExpDataProcessing.py`  and `utils.py` scripts must be in the same directory, as `IBMQuantumExperiment.py` generates an input file for `ExpDataProcessing.py`. Before running the experiment, we select the best quality qubit based on the calibration data of the desired backend by specifying its number in the initial layout. This increases the likelihood of certifying the asymmetry property of our target. 
+It is important to note that `IBMQuantumExperiment.py`, `ExpDataProcessing.py`  and `utils.py` scripts must be in the same directory, as `IBMQuantumExperiment.py` generates an input file for `ExpDataProcessing.py`. Before running the experiment, we select the best quality qubit based on the calibration data of the desired backend by specifying its number in the initial layout. This increases the likelihood of certifying the asymmetry property of our target. 
 
 The `IBMQuantumExperiment.py` script is designed for coplanar targets (i.e., $\alpha_{12}+\alpha_{13}+\alpha_{23}=2\pi$). However, the script can be slightly modified to accommodate non-coplanar configurations using the aforementioned parametrization.
 
