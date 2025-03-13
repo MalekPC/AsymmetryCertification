@@ -4,7 +4,6 @@ from numpy import pi, sin, cos, sqrt
 import numpy as  np
 from utils import weight_function, Degree, MirrorBound
 
-
 # Reading the input parameters and the job ID from the external file
 file_name = "ExperimentINPUT.txt"
 with open(file_name, "r") as file:
