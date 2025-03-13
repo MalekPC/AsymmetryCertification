@@ -49,7 +49,7 @@ Qmirror = MirrorBound(alpha12, alpha13, alpha23)
 
 print("Qmirror=", Qmirror)
 ````
-which outputs `Qmirror= 5.82842712`. This obtained bound is tight as it matches the same bound obtained by solving our Quadratically Constrained Quadratic Programming (QCQP), where we use the Lasserre hierarchy to relax the problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`.
+which outputs `Qmirror= 5.82842712`. This obtained bound is tight, as it matches the same bound obtained when using the Lasserre hierarchy approach to relax our Quadratically Constrained Quadratic Programming (QCQP) problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`.
 
 ## Identifying the Most Asymmetric Configuration
 
