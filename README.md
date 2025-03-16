@@ -33,7 +33,7 @@ When $\phi_3 = k\pi$ where $k \in \mathbb{Z}$, our target Bloch vectors are copl
 
 ## Mirror Symmetry Bound Calculation
 
-The function `MirrorBound` from `utils.py` takes as arguments the angles $\alpha_{12}$, $\alpha_{13}$ and $\alpha_{23}$  and returns the bound $Q_{\text{mirror}}$. This function solves the optimization problem (29) subject to the mirror symmetry constraint in Eq. (30) along with the constraints on the preparation and measurement Bloch vectors (i.e., their norm can be less than or equals to 1). The problem is solved for the three different possible mirror symmetry constraints, yielding three bounds. The bound $Q_{\text{mirror}}$ is simply their maximum. The optimization has been performed using the Sequential Least Squares Quadratic Programming (SLSQP) method, which is implemented in the `scipy` library.
+The function `MirrorBound` from `utils.py` takes as arguments the angles $\alpha_{12}$, $\alpha_{13}$ and $\alpha_{23}$  and returns the bound $Q_{\text{mirror}}$. This function solves the optimization problem (29) subject to the mirror symmetry constraint in Eq. (30) along with the constraints on the preparation and measurement Bloch vectors (i.e., their norm can be less than or equals to 1). The problem is solved for the three different possible mirror symmetry constraints, yielding three bounds. The bound $Q_{\text{mirror}}$ is simply their maximum. The global optimization has been performed using the Basin-hopping algorithm with the local optimizer SLSQP (Sequential Least Squares Quadratic Programming), which can be called from the `scipy` library. 
 
 The mirror symmetry bound can be computed using the following piece of code:
 
