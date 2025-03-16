@@ -42,9 +42,9 @@ The mirror symmetry bound can be computed using the following piece of code:
 from utils import Degree, MirrorBound,  OverallBound
 
 # Target angles: we take as example the most asymmetric configuration
-alpha12 = 54 * Degree
-alpha13 = 112 * Degree
-alpha23 = 194 * Degree
+alpha12 = 58.4 * Degree
+alpha13 = 121.6 * Degree
+alpha23 = 180 * Degree
 
 Qmirror,[Qmirror123, Qmirror213, Qmirror312] = MirrorBound(alpha12, alpha13, alpha23)
 
