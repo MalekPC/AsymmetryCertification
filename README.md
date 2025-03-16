@@ -33,21 +33,27 @@ When $\phi_3 = k\pi$ where $k \in \mathbb{Z}$, our target Bloch vectors are copl
 
 ## Mirror Symmetry Bound Calculation
 
-The function `MirrorBound` from `utils.py` takes as arguments the angles $\alpha_{12}$, $\alpha_{13}$ and $\alpha_{23}$  and returns the bound $Q_{\text{mirror}}$. This function solves the optimization problem (29) subject to the mirror symmetry constraint in Eq. (30) along with the constraints on the preparation and measurement Bloch vectors (i.e., their norm can be less than or equals to 1). The problem is solved for the three different possible mirror symmetry constraints, yielding three bounds. The bound $Q_{\text{mirror}}$ is simply their maximum. The global optimization has been performed using the Basin-hopping algorithm with the local optimizer SLSQP (Sequential Least Squares Quadratic Programming), which can be called from the `scipy` library. 
+The function `MirrorBound` from `utils.py` takes as arguments the angles $\alpha_{12}$, $\alpha_{13}$ and $\alpha_{23}$  and returns the bound $Q_{\text{mirror}}$. This function solves the optimization problem (29) subject to the mirror symmetry constraint in Eq. (30) along with the constraints on the preparation and measurement Bloch vectors (i.e., their norm can be less than or equals to 1). The problem is solved for the three different possible mirror symmetry constraints, yielding three bounds. The bound $Q_{\text{mirror}}$ is simply the maximum of these three bounds. 
+The global optimization has been performed by using the Squential Least Squares Quadratic Programming  along with the basinhopping algorithm to avoid local maxima.
 
 The mirror symmetry bound can be computed using the following piece of code:
 
 ```python
-from utils import Degree, MirrorBound
+from utils import Degree, MirrorBound,  OverallBound
 
 # Target angles: we take as example the most asymmetric configuration
-alpha12 = 58.4 * Degree
-alpha13 = 121.6 * Degree
-alpha23 = 180 * Degree
+alpha12 = 54 * Degree
+alpha13 = 112 * Degree
+alpha23 = 194 * Degree
 
-Qmirror = MirrorBound(alpha12, alpha13, alpha23)
+Qmirror,[Qmirror123, Qmirror213, Qmirror312] = MirrorBound(alpha12, alpha13, alpha23)
 
 print("Qmirror=", Qmirror)
+# If you are intrested in the mirror bounds Q^{ijk}_{\text{mirror}} in Eq. ()
+# uncomment the following lines
+#print("Qmirror123=", Qmirror123)
+#print("Qmirror213=", Qmirror213)
+#print("Qmirror312=", Qmirror312)
 ````
 which outputs `Qmirror= 5.82842712`. This obtained bound is tight, as it matches the same bound obtained when using the Lasserre hierarchy approach to relax our Quadratically Constrained Quadratic Programming (QCQP) problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`.
 
