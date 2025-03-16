@@ -1,6 +1,6 @@
 from numpy import pi, sin, cos, sqrt
 import numpy as  np
-from scipy.optimize import minimize
+from scipy.optimize import minimize, basinhopping
 
 Degree= pi/180.0
 
@@ -76,7 +76,9 @@ ConstraintsOnBlochVectors=[
 ]
 
 # Mirror symmetry constraints [Eq. (7) in the manuscript:
-#
+#coplanarity constraint:
+def coplanarityConstraint(x):
+    return x[0]*(x[4]*x[8]-x[5]*x[7]) + x[1]*(x[5]*x[6]-x[3]*x[8]) + x[2]*(x[3]*x[7]-x[6]*x[4])
 # |n1-n2|=|n1-n3|:
 def Mirror123Constraint(x): 
     return (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2 -((x[0]-x[6])**2+(x[1]-x[7])**2+(x[2]-x[8])**2)
@@ -100,45 +102,40 @@ def MirrorBound(alpha12, alpha13, alpha23):
     def objective(x):
         return -I6(w12,w13,w23,x)
 
-    num_initial_guesses = 5
-    best_cost = np.inf
-    best_result = None
 
-    for _ in range(num_initial_guesses):
+    # Initial guess
+    x0 = []
+    for i in range(9):
+        x0.append(sample_a_Bloch_Vector())
 
-         # Initial guess
-         x0 = []
-         for i in range(9):
-             x0.append(sample_a_Bloch_Vector())
+    initial_guess = np.concatenate(x0).tolist()
 
-         initial_guess = np.concatenate(x0).tolist()
+    # constraints         
+    constraints1 = ConstraintsOnBlochVectors.copy() \
+    + [{'type':   'eq', 'fun': Mirror123Constraint }] # |n1-n2|=|n1-n3|
+    constraints2 = ConstraintsOnBlochVectors.copy() \
+    + [{'type':   'eq', 'fun': Mirror213Constraint }]   #|n2-n1|=|n2-n3|
+    constraints3 = ConstraintsOnBlochVectors.copy() \
+    + [{'type':   'eq', 'fun': Mirror312Constraint }]  # |n3-n1|=|n3-n2|
 
-         # constraints         
-         constraints1 = ConstraintsOnBlochVectors.copy() \
-         + [{'type':   'eq', 'fun': Mirror123Constraint }]   # |n1-n2|=|n1-n3| 
-         constraints2 = ConstraintsOnBlochVectors.copy() \
-         + [{'type':   'eq', 'fun': Mirror213Constraint }]   # |n2-n1|=|n2-n3|
-         constraints3 = ConstraintsOnBlochVectors.copy() \
-         + [{'type':   'eq', 'fun': Mirror312Constraint }]   # |n3-n1|=|n3-n2|
-
-         # Solve the optimization problem using Squential Least Squares Quadratic Programming  
-         result1 = minimize(objective, initial_guess, method='SLSQP',\
-         constraints=constraints1, tol=1e-10)
-         result2 = minimize(objective, initial_guess, method='SLSQP',\
-         constraints=constraints2, tol=1e-10)
-         result3 = minimize(objective, initial_guess, method='SLSQP',\
-         constraints=constraints3, tol=1e-10)
-
-         result = min(result1.fun,result2.fun,result3.fun)
-
-         if  result < best_cost:
-             best_cost = result
-             best_result = result
-             #OptimalResults=[result1,result2,result3]
-
-         Qmirror = -best_result
-         return Qmirror    
+    # Solve the optimization problem using Squential Least Squares Quadratic Programming (SLSQP) method and basinhopping to find the local optimum
+    
+    local_minimizer1= {"method": "SLSQP", "options": {"ftol": 1e-12},"constraints": constraints1}
+    local_minimizer2= {"method": "SLSQP","options": {"ftol": 1e-12} ,"constraints": constraints2}
+    local_minimizer3= {"method": "SLSQP","options": {"ftol": 1e-12} ,"constraints": constraints3}
+    
+    result1= basinhopping(objective, initial_guess, niter=100, minimizer_kwargs=local_minimizer1)
+    result2= basinhopping(objective, initial_guess, niter=100, minimizer_kwargs=local_minimizer2)
+    result3= basinhopping(objective, initial_guess, niter=100, minimizer_kwargs=local_minimizer3)
+   
+    result = min(result1.fun,result2.fun,result3.fun)
+    Qmirror = -result
+    OptimalResultsF=[-result1.fun,-result2.fun,-result3.fun]
+    return [Qmirror, OptimalResultsF]    
          
 # Gap witness in Eq. (32) in the manuscript:
 def gap_witness(alpha12,alpha13,alpha23):
-    return OverallBound(alpha12, alpha13, alpha23)-MirrorBound(alpha12, alpha13, alpha23)
+    Qmirror= MirrorBound(alpha12, alpha13, alpha23)[0]
+    Qoverall= OverallBound(alpha12, alpha13, alpha23)
+    return Qoverall-Qmirror
+   
