@@ -57,7 +57,7 @@ print("Qmirror=", Qmirror)
 ````
 which outputs `Qmirror= 5.82842712`. This obtained bound is tight, as it matches the same bound obtained when using the Lasserre hierarchy approach to relax our Quadratically Constrained Quadratic Programming (QCQP) problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`.
 
-Based on our numerical experience, the mirror bound can always be achieved using pure states. We have included scripts in this repository that perform the optimization exclusively over pure states (see script names ending with `_pure`) and over pure coplanar states (see script names ending with `_coplanar_pure`).
+Based on our numerical experience, the mirror bound can always be achieved using pure states. We have aslo included scripts in this repository that perform the optimization over pure states (see script names ending with `_pure`) and over pure coplanar states (see script names ending with `_coplanar_pure`). 
 
 ## Identifying the Most Asymmetric Configuration
 
