@@ -1,7 +1,7 @@
 
 # Certifying Asymmetry in the Configuration of Three Qubits
 
-This repository contains our codes to reproduce the numerical and experimental results from the paper "Certifying Asymmetry in the Configuration of Three Qubits" by A. Taoutioui, G. Drótos, and T. Vértesi. It demonstrates how to:
+This repository contains our codes to reproduce the numerical and experimental results from the paper "Certifying Asymmetry in the Configuration of Three Qubits" by A. Taoutioui, G. Drótos, and T. Vértesi (https://iopscience.iop.org/article/10.1088/1367-2630/ae1ce3/meta). It demonstrates how to:
 
 1. Compute the mirror symmetry bound  $Q_{\text{mirror}}$
 2. Identify the most asymmetric configuration using the biased $I_3$ witness
