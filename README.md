@@ -55,9 +55,9 @@ print("Qmirror=", Qmirror)
 #print("Qmirror213=", Qmirror213)
 #print("Qmirror312=", Qmirror312)
 ````
-which outputs `Qmirror= 5.82842712`. This obtained bound is tight, as it matches the same bound obtained when using the Lasserre hierarchy approach to relax our Quadratically Constrained Quadratic Programming (QCQP) problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`.
+which outputs `Qmirror= 5.82842712`. This obtained bound is tight, as it matches the same bound obtained when using the Lasserre hierarchy approach to relax our Quadratically Constrained Quadratic Programming (QCQP) problem into a Semidefinite Program (SDP). This task has been performed by using the Matlab script `Lassere_SDP_Q.m`. As we have reformulated the related optimization problem as a conic convex program, we can now get a tight Q_mirror bound by solving the conic program presented in appendix B of the manuscript (see also the script `Qmirror_ConicProgram.py`)
 
-Based on our numerical experience, the mirror bound can always be achieved using pure states. We have aslo included scripts in this repository that perform the optimization over pure states (see script names ending with `_pure`) and over pure coplanar states (see script names ending with `_coplanar_pure`). 
+Based on our numerical experience, the mirror bound can always be achieved using pure states (this has been proven by using a convex conic program reformulation of our original nonconvex optimization problem, see appendix B of the manuscript). We have aslo included scripts in this repository that perform the optimization over pure states (see script names ending with `_pure`) and over pure coplanar states (see script names ending with `_coplanar_pure`). 
 
 ## Identifying the Most Asymmetric Configuration
 
